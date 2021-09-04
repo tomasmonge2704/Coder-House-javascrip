@@ -2,7 +2,7 @@
 
 function Producto(nombre, precio, cantidad) {
     this.nombre = nombre;
-    this.precio 	 = precio;
+    this.precio = precio;
     this.cantidad  = cantidad;
 }
 
@@ -11,11 +11,7 @@ const Producto2 = new Producto(prompt("Nombre del producto"),prompt("Precio del 
 const Producto3 = new Producto(prompt("Nombre del producto"),prompt("Precio del producto"), prompt("Cantidad del producto"));
 const Producto4 = new Producto(prompt("Nombre del producto"),prompt("Precio del producto"), prompt("Cantidad del producto"));
 
-const productos = [
-    { nombre:Producto1.nombre,precio:Producto1.precio, cantidad:Producto1.cantidad },
-    { nombre:Producto2.nombre,precio:Producto2.precio, cantidad:Producto2.cantidad },
-    { nombre:Producto3.nombre,precio:Producto3.precio, cantidad:Producto3.cantidad },
-    { nombre:Producto4.nombre,precio:Producto4.precio, cantidad:Producto4.cantidad }];
+const productos = [Producto1,Producto2,Producto3,Producto4];
 
 
 /*filtro cual es el mas barato*/
@@ -31,6 +27,26 @@ alert ("Precio total = " + preciototal);
 
 
 console.log(productos);
+/*LOCAL STORAGE*/
 
+localStorage.setItem("PRO1", JSON.stringify(Producto1));
+localStorage.setItem("PRO2", JSON.stringify(Producto2));
+localStorage.setItem("PRO3", JSON.stringify(Producto3));
+localStorage.setItem("PRO4", JSON.stringify(Producto4));
+/* DOM */
+
+document.getElementById('pr1').innerHTML = `<h5 class="fw-bolder">  ${Producto1.nombre}</h5>
+                        <p>  $${Producto1.precio}</p>
+                        <p>  cantidad: ${Producto1.cantidad}</p>`;
+
+document.getElementById('pr2').innerHTML = `<h5 class="fw-bolder">  ${Producto2.nombre}</h5>
+                        <p>  $${Producto2.precio}</p>
+                        <p>  cantidad: ${Producto2.cantidad}</p>`;     
+document.getElementById('pr3').innerHTML = `<h5 class="fw-bolder">  ${Producto3.nombre}</h5>
+                        <p>  $${Producto3.precio}</p>
+                        <p>  cantidad: ${Producto3.cantidad}</p>`;
+document.getElementById('pr4').innerHTML = `<h5 class="fw-bolder">  ${Producto4.nombre}</h5>
+                        <p>  $${Producto4.precio}</p>
+                        <p>  cantidad: ${Producto4.cantidad}</p>`;
 
 
