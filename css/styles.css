@@ -2197,6 +2197,8 @@ progress {
           appearance: none;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 @media (prefers-reduced-motion: reduce) {
   .form-control {
