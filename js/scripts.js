@@ -9,10 +9,10 @@ class Producto {
     }
 }
 /*Productos harcodeados*/
-const Producto1 = new Producto("Adidas","500", "1","/assets/img/adidas.jpg");
-const Producto2 = new Producto("Nike","500", "1","/assets/img/nike.jpg");
-const Producto3 = new Producto("PUMA","500", "1","/assets/img/puma.jpg");
-const Producto4 = new Producto("John Foos","500", "1","/assets/img/foos.jpg");
+const Producto1 = new Producto("Adidas","500", "1","../assets/img/adidas.jpg");
+const Producto2 = new Producto("Nike","500", "1","../assets/img/nike.jpg");
+const Producto3 = new Producto("PUMA","500", "1","../assets/img/puma.jpg");
+const Producto4 = new Producto("John Foos","500", "1","../assets/img/foos.jpg");
 
 /*Array productos*/
 const productos = [Producto1,Producto2,Producto3,Producto4];
