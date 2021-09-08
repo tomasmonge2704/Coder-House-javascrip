@@ -43,7 +43,10 @@ function cargarelementosdellocal() {
             <img class="card-img-top" src="${producto.img}" alt="..." />
             <div class="card-body p-4">
             <div class="col mb-5">
+            <div class="modal-header">
             <h5 class="fw-bolder">  ${producto.nombre}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
             <p>  $${producto.precio}</p>
             <p>  cantidad: ${producto.cantidad}</p>
             </div>
@@ -75,7 +78,10 @@ function nuevoProducto() {
         <img class="card-img-top" src="${imagen}" alt="..." />
         <div class="card-body p-4">
         <div class="col mb-5">
+        <div class="modal-header">
         <h5 class="fw-bolder">  ${nomb}</h5>
+        <button type="button" id="borrar" onclick="borrarProducto()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
         <p>  $${pre}</p>
         <p>  cantidad: ${cant}</p>
         </div>
@@ -97,7 +103,10 @@ function nuevoProducto() {
     localStorage.setItem("listaProductos", JSON.stringify(productos));
     }  
 
-
+  function  borrarProducto() {
+    localStorage.removeItem(nomb);
+    
+  }
 
 
 console.log(productos);  
