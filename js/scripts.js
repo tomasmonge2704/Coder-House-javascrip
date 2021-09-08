@@ -1,17 +1,18 @@
 
 
 class Producto {
-    constructor(nombre, precio, cantidad) {
+    constructor(nombre, precio, cantidad, img) {
         this.nombre = nombre;
         this.precio = precio;
         this.cantidad = cantidad;
+        this.img = img
     }
 }
 /*Productos harcodeados*/
-const Producto1 = new Producto("Adidas","500", "5");
-const Producto2 = new Producto("Nike","500", "5");
-const Producto3 = new Producto("PUMA","500", "5");
-const Producto4 = new Producto("John Foos","500", "5");
+const Producto1 = new Producto("Adidas","500", "1","/assets/img/adidas.jpg");
+const Producto2 = new Producto("Nike","500", "1","/assets/img/nike.jpg");
+const Producto3 = new Producto("PUMA","500", "1","/assets/img/puma.jpg");
+const Producto4 = new Producto("John Foos","500", "1","/assets/img/foos.jpg");
 
 /*Array productos*/
 const productos = [Producto1,Producto2,Producto3,Producto4];
@@ -39,7 +40,7 @@ function cargarelementosdellocal() {
         const element = document.createElement("div");
         element.innerHTML = `<div class="col mb-5">
         <div class="card h-100">
-            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+            <img class="card-img-top" src="${producto.img}" alt="..." />
             <div class="card-body p-4">
             <div class="col mb-5">
             <h5 class="fw-bolder">  ${producto.nombre}</h5>
@@ -64,14 +65,14 @@ function nuevoProducto() {
     let nomb = document.getElementById("nomb").value;
     let pre = document.getElementById("pre").value;
     let cant = document.getElementById("cant").value;
-    
+    let imagen = document.getElementById("myfile").value;
     /*creo Div*/
     let div = document.createElement('div');
     const productList = document.getElementById("product-list");
     const element = document.createElement("div");
     element.innerHTML = `<div class="col mb-5">
     <div class="card h-100">
-        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+        <img class="card-img-top" src="${imagen}" alt="..." />
         <div class="card-body p-4">
         <div class="col mb-5">
         <h5 class="fw-bolder">  ${nomb}</h5>
