@@ -75,7 +75,7 @@ function nuevoProducto() {
     const element = document.createElement("div");
     element.innerHTML = `<div class="col mb-5">
     <div class="card h-100">
-        <img class="card-img-top" src="${imagen}" alt="..." />
+        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
         <div class="card-body p-4">
         <div class="col mb-5">
         <div class="modal-header">
