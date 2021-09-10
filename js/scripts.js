@@ -9,6 +9,7 @@ class Producto {
     }
 }
 
+
 /*Array productos*/
 const productos = [];
 
@@ -29,6 +30,7 @@ localStorage.setItem("listaProductos", JSON.stringify(productos));
 
 
 function nuevoProducto() {
+
     /*Obtengo datos del input*/
     let nomb = document.getElementById("nomb").value;
     let pre = document.getElementById("pre").value;
@@ -47,6 +49,7 @@ function nuevoProducto() {
     cargarelementosdellocal();
     }  
 
+ 
   function  borrarProducto() {
     localStorage.clear()
     
@@ -71,12 +74,12 @@ function nuevoProducto() {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="borrarProducto()"></button>
             
             </div>
-            <p>  $${producto.precio}</p>
-            <p>  cantidad: ${producto.cantidad}</p>
+            <p class="precioProd">  $${producto.precio}</p>
+            <p class="cantProd">  cantidad: ${producto.cantidad}</p>
             </div>
             </div>
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Agregar al carrito</a></div>
+                <div class="text-center"><a class="button btn btn-outline-dark mt-auto" onclick="cargarCarrito()" href="#carritotbody" >Agregar al carrito</a></div>
             </div>
         </div>
     </div>
@@ -89,5 +92,33 @@ function nuevoProducto() {
 
 cargarelementosdellocal();
 
+let contador = 0;
+const Clickbutton = document.querySelectorAll('.button')
+Clickbutton.forEach(btn => {
+    btn.addEventListener('click', cargarCarrito)
+  })
 
+
+function cargarCarrito (e){
+    contador++;
+    /*saco datos*/
+    const button = e.target;
+    const item = button.closest('.card');
+    const itemTitle = item.querySelector('.fw-bolder').textContent;
+    const itemPrice = item.querySelector('.precioProd').textContent;
+    const itemCant = item.querySelector('.cantProd').textContent;
+    /*creo Div*/
+    let div = document.createElement('tr');
+    const productList = document.getElementById("carritotbody");
+    const element = document.createElement("tr");
+    element.innerHTML = `<tr>
+    <th scope="row"> ${contador} </th>
+    <td>${itemTitle}</td>
+    <td>${itemPrice}</td>
+    <td>${itemCant}</td>
+  </tr>
+    `;
+    productList.appendChild(element);
+    
+}
 console.log(productos);  
