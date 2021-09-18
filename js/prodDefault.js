@@ -1,31 +1,12 @@
+/*Productos harcodeados*/
+const Producto1 = new Producto("Adidas","500", "1","assets/img/adidas.jpg");
+const Producto2 = new Producto("Nike","500", "1","assets/img/nike.jpg");
+const Producto3 = new Producto("PUMA","500", "1","assets/img/puma.jpg");
+const Producto4 = new Producto("John Foos","500", "1","assets/img/foos.jpg");
 
+const prodDefault = [Producto1, Producto2, Producto3, Producto4];
 
-class Producto {
-    constructor(nombre, precio, cantidad, img) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.cantidad = cantidad;
-        this.img = img
-    }
-}
-
-/*Array productos*/
-const productos = [];
-
-/*LOCALSTORAGE*/
-if (localStorage.getItem('listaProductos')) {   
-}
-else {
-  
-localStorage.setItem("listaProductos", JSON.stringify(productos));
-}
-
-/* DOM */
-
-/*carga todos los productos que esten en el localstorage*/
-  function cargarelementosdellocal() {
-    const almacenados = JSON.parse(localStorage.getItem("listaProductos"));
-    for (const producto of almacenados) {
+for (const producto of prodDefault) {
   /*creo Div*/
         let div = document.createElement('div');
         const productList = document.getElementById("product-list");
@@ -53,9 +34,3 @@ localStorage.setItem("listaProductos", JSON.stringify(productos));
         `;
         productList.appendChild(element);
     }
-  }
-
-cargarelementosdellocal();
-
-
-console.log(productos);  
