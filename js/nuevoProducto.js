@@ -17,6 +17,7 @@ function nuevoProducto() {
     localStorage.setItem("listaProductos", JSON.stringify(productos));
     /*llamo a la funcion render*/
     cargarelementosdellocal();
+    
 }  
 
 function  borrarProducto() {

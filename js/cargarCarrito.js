@@ -1,12 +1,13 @@
 var contador = 0;
 let totalFinal = 0;
+let carrito = [];
 const Clickbutton = document.querySelectorAll('.button');
 Clickbutton.forEach(btn => {
     btn.addEventListener('click', cargarCarrito)
   })
 
 
-function cargarCarrito (e){
+  function cargarCarrito (e){
     /*saco datos del html*/
     const button = e.target;
     const item = button.closest('.card');
@@ -16,8 +17,11 @@ function cargarCarrito (e){
      /*precio y cantidad*/
      const precio = Number(itemPrice.replace("$",''))
      const cantidad = Number(itemCant.replace("cantidad:",''))
-    totalFinal = totalFinal + precio * cantidad;
+     totalFinal = totalFinal + precio * cantidad;
     cargarTotal()
+
+     carrito.push(precio, cantidad);
+    console.log(carrito);
     /*creo row*/
     contador = contador + 1;
     let div = document.createElement('tr');
@@ -27,15 +31,16 @@ function cargarCarrito (e){
     <th scope="row"> ${contador} </th>
     <td>${itemTitle}</td>
     <td>${itemPrice}</td>
-    <td>${itemCant}</td>
+    <td> <input type="number" min="1" value=${cantidad} class="w44"> <button class="delete btn btn-danger">x</button></td>
   </tr>
     `;
     productList.appendChild(element);
-  
+    cargarTotal();
 }
+function cargarCantidad  () {
 
+}
 function cargarTotal (){
   const itemCartTotal = document.querySelector('#Total')
-
 itemCartTotal.innerHTML = `$${totalFinal}`
 }
