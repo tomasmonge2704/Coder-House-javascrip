@@ -22,15 +22,13 @@ localStorage.setItem("listaProductos", JSON.stringify(productos));
 
 /* DOM */
 
-/*carga todos los productos que esten en el localstorage*/
   function cargarelementosdellocal() {
+     
     const almacenados = JSON.parse(localStorage.getItem("listaProductos"));
+     /*recorre todos los productos que esten en el localstorage*/
     for (const producto of almacenados) {
-  /*creo Div*/
-        let div = document.createElement('div');
-        const productList = document.getElementById("product-list");
-        const element = document.createElement("div");
-        element.innerHTML = `<div class="col mb-5">
+
+      $("#product-list").append(  `<div class="col mb-5">
         <div class="card h-100">
        
             <img class="card-img-top" src="${producto.img}" alt="..." />
@@ -49,13 +47,13 @@ localStorage.setItem("listaProductos", JSON.stringify(productos));
                 
             </div>
         </div>
-    </div>
-        `;
-        productList.appendChild(element);
+     </div>
+        `);
+        
     }
   }
 
 cargarelementosdellocal();
 
 
-console.log(productos);  
+

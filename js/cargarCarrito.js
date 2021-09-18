@@ -19,28 +19,21 @@ Clickbutton.forEach(btn => {
      const cantidad = Number(itemCant.replace("cantidad:",''))
      totalFinal = totalFinal + precio * cantidad;
     cargarTotal()
-
-     carrito.push(precio, cantidad);
+    carrito.push(precio, cantidad);
     console.log(carrito);
     /*creo row*/
     contador = contador + 1;
-    let div = document.createElement('tr');
-    const productList = document.getElementById("carritotbody");
-    const element = document.createElement("tr");
-    element.innerHTML = `<tr>
+    $("#carritotbody").append( `<tr>
     <th scope="row"> ${contador} </th>
     <td>${itemTitle}</td>
     <td>${itemPrice}</td>
     <td> <input type="number" min="1" value=${cantidad} class="w44"> <button class="delete btn btn-danger">x</button></td>
   </tr>
-    `;
-    productList.appendChild(element);
+    `);
     cargarTotal();
-}
-function cargarCantidad  () {
+  }
 
-}
-function cargarTotal (){
+ function cargarTotal (){
   const itemCartTotal = document.querySelector('#Total')
-itemCartTotal.innerHTML = `$${totalFinal}`
-}
+ itemCartTotal.innerHTML = `$${totalFinal}`
+ }

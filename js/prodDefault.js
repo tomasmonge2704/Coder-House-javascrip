@@ -8,10 +8,7 @@ const prodDefault = [Producto1, Producto2, Producto3, Producto4];
 
 for (const producto of prodDefault) {
   /*creo Div*/
-        let div = document.createElement('div');
-        const productList = document.getElementById("product-list");
-        const element = document.createElement("div");
-        element.innerHTML = `<div class="col mb-5">
+  $("#product-list").append( `<div class="col mb-5">
         <div class="card h-100">
        
             <img class="card-img-top" src="${producto.img}" alt="..." />
@@ -30,6 +27,6 @@ for (const producto of prodDefault) {
             
         </div>
     </div>
-        `;
-        productList.appendChild(element);
+        `);
+       
     }
