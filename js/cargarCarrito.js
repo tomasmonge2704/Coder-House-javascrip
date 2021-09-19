@@ -23,7 +23,7 @@ Clickbutton.forEach(btn => {
     console.log(carrito);
     /*creo row*/
     contador = contador + 1;
-    $("#carritotbody").append( `<tr>
+    $("#carritotbody").prepend( `<tr>
     <th scope="row"> ${contador} </th>
     <td>${itemTitle}</td>
     <td>${itemPrice}</td>
@@ -31,7 +31,13 @@ Clickbutton.forEach(btn => {
   </tr>
     `);
     cargarTotal();
+    function carritoRenderCantidad (){
+      const cantidadelementos = document.querySelector('.carritoCantidad')
+      cantidadelementos.innerHTML = `${contador}`
+    }
+    carritoRenderCantidad();
   }
+
 
  function cargarTotal (){
   const itemCartTotal = document.querySelector('#Total')
