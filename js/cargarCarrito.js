@@ -44,3 +44,5 @@ Clickbutton.forEach(btn => {
   const itemCartTotal = document.querySelector('#Total')
  itemCartTotal.innerHTML = `$${totalFinal}`
  }
+
+ 
