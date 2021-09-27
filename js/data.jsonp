@@ -1,0 +1,30 @@
+let jsonObject =   {
+        "Productos": [
+        {
+           "nombre":"Adidas",
+           "precio":"500",
+           "cantidad":"1",
+           "img":"assets/img/adidas.jpg" 
+        },
+		{
+           "nombre":"Nike",
+           "precio":"550",
+           "cantidad":"1",
+           "img":"assets/img/nike.jpg" 
+		}
+        ,
+		{
+           "nombre":"Puma",
+           "precio":"600",
+           "cantidad":"1",
+           "img":"assets/img/puma.jpg" 
+		}
+        ,
+		{
+           "nombre":"John Foos",
+           "precio":"500",
+           "cantidad":"1",
+           "img":"assets/img/foos.jpg" 
+		}
+		]
+	}
