@@ -1,13 +1,14 @@
 var contador = 0;
 let totalFinal = 0;
 let carrito = [];
-const Clickbutton = document.querySelectorAll('.button');
+let Clickbutton = document.querySelectorAll('.button');
 Clickbutton.forEach(btn => {
     btn.addEventListener('click', cargarCarrito)
   })
 
 
   function cargarCarrito (e){
+    
     /*saco datos del html*/
     const button = e.target;
     const item = button.closest('.card');
@@ -45,4 +46,3 @@ Clickbutton.forEach(btn => {
  itemCartTotal.innerHTML = `$${totalFinal}`
  }
 
- 
