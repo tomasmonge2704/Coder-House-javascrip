@@ -29,6 +29,7 @@ function GetProducts (){
   productService.GetProducts()
   .then((products) => {
     showProducts(products);
+    console.log(products)
   })
   .catch(error => console.log(error));
 
@@ -53,7 +54,7 @@ function showProducts(products) {
         </div>
         </div>
         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center"><a class="button btn btn-outline-dark mt-auto"  ref="${producto.Nombre}" href="#carritotbody" >Agregar al carrito</a> <button class="delete btn btn-danger">x</button></div>
+            <div class="text-center"><a class="button btn btn-outline-dark mt-auto" id="botonCarrito" ref="${producto.Nombre}" >Agregar al carrito</a> <button class="botonBorrar delete btn btn-danger" ref="${producto.Nombre}">x</button></div>
             
         </div>
     </div>
@@ -65,12 +66,54 @@ function showProducts(products) {
 
 GetProducts();
 
-function writeUserData( name, email, imageUrl) {
+function nuevoProducto() {
+  const nombre = document.getElementById("nomb").value
+  const precio = document.getElementById("pre").value
+  const cantidad = document.getElementById("cant").value
+  const img = document.getElementById("myfile").value
+
   const db = database;
-  set(ref(db, 'Productos/Adidas'), {
-    username: name,
-    email: email,
-    profile_picture : imageUrl
+  set(ref(db, 'Productos/'+nombre), {
+    Nombre: nombre,
+    Precio: precio,
+    Cantidad: cantidad,
+    img : img
   });
+  /*Render*/
+  $("#product-list").append(  `<div class="col mb-5">
+        <div class="card h-100">
+       
+            <img class="card-img-top" src="${img}" alt="..." />
+            
+            <div class="card-body p-4">
+            <div class="col mb-5">
+            <div class="modal-headernombre">
+            <h5 class="fw-bolder">  ${nombre}</h5>  
+            </div>
+            <p class="precioProd">  $${precio}</p>
+            <p class="cantProd">  cantidad: ${cantidad}</p>
+            </div>
+            </div>
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center"><a class="button btn btn-outline-dark mt-auto" id="botonCarrito" >Agregar al carrito</a> <button class="delete btn btn-danger">x</button></div>
+                
+            </div>
+        </div>
+     </div>
+        `);
+        
 }
-writeUserData();
+document.getElementById("botonSubir").addEventListener("click",nuevoProducto)
+
+function borrarProducto(){
+  console.log("funciona");
+  const db = database;
+  remove(ref(db, 'Productos/'+ producto.Nombre));
+}
+
+
+  $(".botonBorrar").click(function () { 
+    console.log("funciona");
+  });
+
+

@@ -1,7 +1,7 @@
 var contador = 0;
 let totalFinal = 0;
 let carrito = [];
-let Clickbutton = document.querySelectorAll('.button');
+let Clickbutton = document.querySelectorAll('#botonCarrito');
 Clickbutton.forEach(btn => {
     btn.addEventListener('click', cargarCarrito)
   })
