@@ -1,5 +1,5 @@
 import { database, app } from "./lib/firebaseLib.js";
-import {ref,set, onValue}  from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
+import {ref,set,update, onValue}  from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
 
 class ProductsService {
 constructor (){
@@ -25,19 +25,25 @@ GetProducts(){
 
 let productService = new ProductsService();
 
+
+    
+
 function GetProducts (){
   productService.GetProducts()
   .then((products) => {
     showProducts(products);
-    console.log(products)
   })
   .catch(error => console.log(error));
-
+  
 }
+
+
+let productos_Array = []
 
 function showProducts(products) {
   let productsArray = Object.keys(products).map((key) => products[key]);
-  
+  Array.prototype.push.apply(productos_Array, productsArray);
+  console.log(productos_Array);
   productsArray.forEach(producto => {
     $("#product-list").append(  `<div class="col mb-5">
     <div class="card h-100">
@@ -47,7 +53,7 @@ function showProducts(products) {
         <div class="card-body p-4">
         <div class="col mb-5">
         <div class="modal-headernombre">
-        <h5 class="fw-bolder">  ${producto.Nombre}</h5>  
+        <h5 class="fw-bolder" id="idNombre">${producto.Nombre}</h5>  
         </div>
         <p class="precioProd">  $${producto.Precio}</p>
         <p class="cantProd">  cantidad: ${producto.Cantidad}</p>
@@ -61,7 +67,7 @@ function showProducts(products) {
  </div>
     `);
   })
-  
+ 
 }
 
 GetProducts();
@@ -105,15 +111,50 @@ function nuevoProducto() {
 }
 document.getElementById("botonSubir").addEventListener("click",nuevoProducto)
 
-function borrarProducto(){
-  console.log("funciona");
+
+$('body').on('click', '.botonBorrar', function(e) {
+  const button = e.target;
+  const item = button.closest('.col');
+  const nombreProd = item.querySelector('.fw-bolder').textContent;
+  console.log(nombreProd);
+  const nombre = null;
+  const precio = null;
+  const cantidad = null;
+  const img = null;
   const db = database;
-  remove(ref(db, 'Productos/'+ producto.Nombre));
-}
-
-
-  $(".botonBorrar").click(function () { 
-    console.log("funciona");
+  update(ref(db, 'Productos/' + nombreProd), {
+    Nombre: nombre,
+    Precio: precio,
+    Cantidad: cantidad,
+    img : img
   });
+});
 
+//carrito
+var contador = 0;
+let totalFinal = 0;
+$('body').on('click', '#botonCarrito', function(e) {
+  contador = contador + 1;
+  const button = e.target
+  const item = button.closest('.col');
+  const nombreProd = item.querySelector('.fw-bolder').textContent;
+  const producto = productos_Array.find(objProd => objProd.Nombre === nombreProd);
+  $("#carritotbody").append( `<tr>
+    <th scope="row"> ${contador} </th>
+    <td>${producto.Nombre}</td>
+    <td>${producto.Precio}</td>
+    <td> <input type="number" min="1" value=${producto.Cantidad} class="w44"> <button class="delete btn btn-danger">x</button></td>
+  </tr>
+    `);
+    carritoRenderCantidad();
+    cargarTotal();
+});
 
+function carritoRenderCantidad (){
+  const cantidadelementos = document.querySelector('.carritoCantidad')
+  cantidadelementos.innerHTML = `${contador}`
+}
+function cargarTotal (){
+  const itemCartTotal = document.querySelector('#Total')
+ itemCartTotal.innerHTML = `$${totalFinal}`
+ }

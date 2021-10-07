@@ -11287,9 +11287,12 @@ textarea.form-control-lg {
 .w44{
   width: 60px;
 }
-
+.button {
+  width: 77%;
+}
 @media (min-width: 992px) and (max-width: 1199px) {
-    
+  
+
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -11297,7 +11300,14 @@ textarea.form-control-lg {
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
- 
+  .p-4{
+    padding: 11px !important;
+    height: 145px;
+  }
+  .button {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 
 @media (min-width: 480px) and (max-width: 767px) {
@@ -11306,4 +11316,12 @@ textarea.form-control-lg {
 
 @media (min-width: 576px) and (max-width: 767px) {
     
+}
+
+.card{
+  box-shadow: 0px 1px 27px 4px rgb(0 0 0 / 17%) ;
+  border-radius: 20px;
+}
+.mb-5{
+  padding-top: 1rem;
 }
