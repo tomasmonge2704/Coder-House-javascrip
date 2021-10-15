@@ -5603,7 +5603,7 @@ textarea.form-control-lg {
 
 @media (min-width: 576px) {
   .modal-dialog {
-    max-width: 500px;
+    max-width: 70%;
     margin: 1.75rem auto;
   }
 
@@ -11324,4 +11324,7 @@ textarea.form-control-lg {
 }
 .mb-5{
   padding-top: 1rem;
+}
+.imgCarrito{
+  width: 100px;
 }

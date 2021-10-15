@@ -45,7 +45,7 @@ function showProducts(products) {
   Array.prototype.push.apply(productos_Array, productsArray);
   console.log(productos_Array);
   productsArray.forEach(producto => {
-    $("#product-list").append(  `<div class="col mb-5">
+    $("#product-list").append(  `<div class="prodCard col mb-5">
     <div class="card h-100">
    
         <img class="card-img-top" src="${producto.img}" alt="..." />
@@ -86,7 +86,7 @@ function nuevoProducto() {
     img : img
   });
   /*Render*/
-  $("#product-list").append(  `<div class="col mb-5">
+  $("#product-list").append(  `<div class="prodCard col mb-5">
         <div class="card h-100">
        
             <img class="card-img-top" src="${img}" alt="..." />
@@ -116,7 +116,7 @@ $('body').on('click', '.botonBorrar', function(e) {
   const button = e.target;
   const item = button.closest('.col');
   const nombreProd = item.querySelector('.fw-bolder').textContent;
-  console.log(nombreProd);
+  const card = button.closest('.prodCard');
   const nombre = null;
   const precio = null;
   const cantidad = null;
@@ -127,28 +127,38 @@ $('body').on('click', '.botonBorrar', function(e) {
     Precio: precio,
     Cantidad: cantidad,
     img : img
-  });
+  }); 
+  card.remove();
 });
 
 //carrito
+const carrito = [];
 var contador = 0;
 let totalFinal = 0;
+/*agrega al carrito */
 $('body').on('click', '#botonCarrito', function(e) {
   contador = contador + 1;
   const button = e.target
   const item = button.closest('.col');
   const nombreProd = item.querySelector('.fw-bolder').textContent;
   const producto = productos_Array.find(objProd => objProd.Nombre === nombreProd);
+  totalFinal = totalFinal + (producto.Precio * producto.Cantidad);
   $("#carritotbody").append( `<tr>
     <th scope="row"> ${contador} </th>
+    <td><img class="imgCarrito" src="${producto.img}" alt="..." /></td>
     <td>${producto.Nombre}</td>
     <td>${producto.Precio}</td>
-    <td> <input type="number" min="1" value=${producto.Cantidad} class="w44"> <button class="delete btn btn-danger">x</button></td>
-  </tr>
+    <td> <input type="number" id="inputCantidad" min="1" value=${producto.Cantidad} class="w44"> <button class="delete btn btn-danger botonBorrarCarrito">x</button></td>
+    
+    </tr>
     `);
+    carrito.push(producto);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
     carritoRenderCantidad();
     cargarTotal();
+    
 });
+
 
 function carritoRenderCantidad (){
   const cantidadelementos = document.querySelector('.carritoCantidad')
@@ -158,3 +168,50 @@ function cargarTotal (){
   const itemCartTotal = document.querySelector('#Total')
  itemCartTotal.innerHTML = `$${totalFinal}`
  }
+
+ /*carga carrito del local storage */
+function cargar_carrito() {
+ if (localStorage.getItem('carrito')){
+
+  const almacenados = JSON.parse(localStorage.getItem("carrito"));
+
+  for (const producto of almacenados) {
+    contador = contador + 1;
+    totalFinal = totalFinal + (producto.Precio * producto.Cantidad);
+    $("#carritotbody").append( `<tr>
+    <th scope="row"> ${contador} </th>
+    <td><img class="imgCarrito" src="${producto.img}" alt="..." /></td>
+    <td class="nombre">${producto.Nombre}</td>
+    <td>${producto.Precio}</td>
+    <td> <input type="number" id="inputCantidad" min="1" value=${producto.Cantidad} class="w44"> <button class="delete btn btn-danger botonBorrarCarrito">x</button></td>
+    
+    </tr>
+    `);
+    }
+    carritoRenderCantidad();
+    cargarTotal();
+    
+  }
+  else{
+  }
+  }
+cargar_carrito();
+
+/*borra productos del carrito*/
+window.addEventListener('load', function() {
+  $('#carritotbody').on('click', function(e) {
+    const button = e.target;
+    const item = button.closest('tr');
+    const nombreProd = item.querySelector('.nombre').textContent;
+    const producto = productos_Array.find(objProd => objProd.Nombre === nombreProd);
+    item.remove();
+    localStorage.removeItem('carrito', producto);
+    contador = contador - 1;
+    carritoRenderCantidad();
+  });
+
+ 
+
+});
+
+
