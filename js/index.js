@@ -148,7 +148,7 @@ $('body').on('click', '#botonCarrito', function(e) {
     <th scope="row"> ${contador} </th>
     <td><img class="imgCarrito" src="${producto.img}" alt="..." /></td>
     <td class="nombre">${producto.Nombre}</td>
-    <td>${producto.Precio}</td>
+    <td>$${producto.Precio}</td>
     <td> <input type="number" id="inputCantidad" min="1" value=${producto.Cantidad} class="w44"> <button class="delete btn btn-danger botonBorrarCarrito">x</button></td>
     </tr>
     `);
@@ -179,7 +179,7 @@ function cargar_carrito() {
     <th scope="row"> ${contador} </th>
     <td><img class="imgCarrito" src="${producto.img}" alt="..." /></td>
     <td class="nombre">${producto.Nombre}</td>
-    <td>${producto.Precio}</td>
+    <td>$${producto.Precio}</td>
     <td> <input type="number" id="inputCantidad" min="1" value=${producto.Cantidad} class="w44"> <button class="delete btn btn-danger botonBorrarCarrito">x</button></td>
     </tr>
     `);
@@ -194,7 +194,7 @@ cargar_carrito();
 
 /*borra productos del carrito*/
 window.addEventListener('load', function() {
-  $('#carritotbody').on('click', function(e) {
+  $('#carritotbody').on('click','.botonBorrarCarrito', function(e) {
     const button = e.target;
     const item = button.closest('tr');
     const nombreProd = item.querySelector('.nombre').textContent;
@@ -203,6 +203,9 @@ window.addEventListener('load', function() {
     localStorage.removeItem('carrito', producto);
     contador = contador - 1;
     carritoRenderCantidad();
+  });
+  $('#carritotbody').on('change','#inputCantidad', function(e) {
+    cargarTotal ();
   });
 });
 

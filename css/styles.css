@@ -11290,6 +11290,9 @@ textarea.form-control-lg {
 .button {
   width: 77%;
 }
+.imgCarrito{
+  width: 100px;
+}
 @media (min-width: 992px) and (max-width: 1199px) {
   
 
@@ -11308,6 +11311,12 @@ textarea.form-control-lg {
     width: 100%;
     margin-bottom: 20px;
   }
+  .imgCarrito{
+    width: 0px;
+  }
+  .w44{
+    width: 42px;
+  }
 }
 
 @media (min-width: 480px) and (max-width: 767px) {
@@ -11324,7 +11333,4 @@ textarea.form-control-lg {
 }
 .mb-5{
   padding-top: 1rem;
-}
-.imgCarrito{
-  width: 100px;
 }
