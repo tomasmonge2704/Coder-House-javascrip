@@ -132,6 +132,7 @@ $('body').on('click', '.botonBorrar', function(e) {
 });
 
 //carrito
+
 const carrito = [];
 var contador = 0;
 let totalFinal = 0;
@@ -146,17 +147,15 @@ $('body').on('click', '#botonCarrito', function(e) {
   $("#carritotbody").append( `<tr>
     <th scope="row"> ${contador} </th>
     <td><img class="imgCarrito" src="${producto.img}" alt="..." /></td>
-    <td>${producto.Nombre}</td>
+    <td class="nombre">${producto.Nombre}</td>
     <td>${producto.Precio}</td>
     <td> <input type="number" id="inputCantidad" min="1" value=${producto.Cantidad} class="w44"> <button class="delete btn btn-danger botonBorrarCarrito">x</button></td>
-    
     </tr>
     `);
     carrito.push(producto);
     localStorage.setItem("carrito", JSON.stringify(carrito));
     carritoRenderCantidad();
-    cargarTotal();
-    
+    cargarTotal();   
 });
 
 
@@ -167,14 +166,12 @@ function carritoRenderCantidad (){
 function cargarTotal (){
   const itemCartTotal = document.querySelector('#Total')
  itemCartTotal.innerHTML = `$${totalFinal}`
- }
+}
 
  /*carga carrito del local storage */
 function cargar_carrito() {
  if (localStorage.getItem('carrito')){
-
   const almacenados = JSON.parse(localStorage.getItem("carrito"));
-
   for (const producto of almacenados) {
     contador = contador + 1;
     totalFinal = totalFinal + (producto.Precio * producto.Cantidad);
@@ -184,13 +181,11 @@ function cargar_carrito() {
     <td class="nombre">${producto.Nombre}</td>
     <td>${producto.Precio}</td>
     <td> <input type="number" id="inputCantidad" min="1" value=${producto.Cantidad} class="w44"> <button class="delete btn btn-danger botonBorrarCarrito">x</button></td>
-    
     </tr>
     `);
     }
     carritoRenderCantidad();
-    cargarTotal();
-    
+    cargarTotal();   
   }
   else{
   }
@@ -209,9 +204,6 @@ window.addEventListener('load', function() {
     contador = contador - 1;
     carritoRenderCantidad();
   });
-
- 
-
 });
 
 
