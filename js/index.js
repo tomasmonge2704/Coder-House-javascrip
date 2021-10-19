@@ -137,17 +137,6 @@ $('body').on('click', '#botonCarrito', function(e) {
   const item = button.closest('.col');
   const nombreProd = item.querySelector('.fw-bolder').textContent;
   const producto = productos_Array.find(objProd => objProd.Nombre === nombreProd);
-  const InputElemnto = $(".input__elemento");
-  
-  for(let i =0; i < carrito.length ; i++){
-    if(carrito[i].Nombre.trim() === producto.Nombre.trim()){
-      carrito[i].Cantidad ++;
-      const inputValue = InputElemnto[i]
-      inputValue.value++;
-      cargarTotal()
-      return null;
-    }
-  }
     $("#carritotbody").append( `<tr>
     <th scope="row"> ${contador} </th>
     <td><img class="imgCarrito" src="${producto.img}" alt="..." /></td>
