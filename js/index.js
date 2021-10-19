@@ -19,14 +19,9 @@ GetProducts(){
   });
   return promise;
 }
-
 }
 
-
 let productService = new ProductsService();
-
-
-    
 
 function GetProducts (){
   productService.GetProducts()
@@ -36,7 +31,6 @@ function GetProducts (){
   .catch(error => console.log(error));
   
 }
-
 
 let productos_Array = []
 
@@ -143,38 +137,36 @@ $('body').on('click', '#botonCarrito', function(e) {
   const item = button.closest('.col');
   const nombreProd = item.querySelector('.fw-bolder').textContent;
   const producto = productos_Array.find(objProd => objProd.Nombre === nombreProd);
-  totalFinal = totalFinal + (producto.Precio * producto.Cantidad);
-  $("#carritotbody").append( `<tr>
+  const InputElemnto = $(".input__elemento");
+  
+  for(let i =0; i < carrito.length ; i++){
+    if(carrito[i].Nombre.trim() === producto.Nombre.trim()){
+      carrito[i].Cantidad ++;
+      const inputValue = InputElemnto[i]
+      inputValue.value++;
+      cargarTotal()
+      return null;
+    }
+  }
+    $("#carritotbody").append( `<tr>
     <th scope="row"> ${contador} </th>
     <td><img class="imgCarrito" src="${producto.img}" alt="..." /></td>
     <td class="nombre">${producto.Nombre}</td>
     <td>$${producto.Precio}</td>
-    <td> <input type="number" id="inputCantidad" min="1" value=${producto.Cantidad} class="w44"> <button class="delete btn btn-danger botonBorrarCarrito">x</button></td>
+    <td> <input type="number" min="1" value=${producto.Cantidad} class="w44 input__elemento"> <button class="delete btn btn-danger botonBorrarCarrito">x</button></td>
     </tr>
     `);
-    carrito.push(producto);
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-    carritoRenderCantidad();
-    cargarTotal();   
+  carrito.push(producto);
+   carritoRenderCantidad();
+   localStorage.setItem("carrito", JSON.stringify(carrito));
+   cargarTotal();
 });
-
-
-function carritoRenderCantidad (){
-  const cantidadelementos = document.querySelector('.carritoCantidad')
-  cantidadelementos.innerHTML = `${contador}`
-}
-function cargarTotal (){
-  const itemCartTotal = document.querySelector('#Total')
- itemCartTotal.innerHTML = `$${totalFinal}`
-}
-
  /*carga carrito del local storage */
 function cargar_carrito() {
  if (localStorage.getItem('carrito')){
   const almacenados = JSON.parse(localStorage.getItem("carrito"));
   for (const producto of almacenados) {
     contador = contador + 1;
-    totalFinal = totalFinal + (producto.Precio * producto.Cantidad);
     $("#carritotbody").append( `<tr>
     <th scope="row"> ${contador} </th>
     <td><img class="imgCarrito" src="${producto.img}" alt="..." /></td>
@@ -183,6 +175,7 @@ function cargar_carrito() {
     <td> <input type="number" id="inputCantidad" min="1" value=${producto.Cantidad} class="w44"> <button class="delete btn btn-danger botonBorrarCarrito">x</button></td>
     </tr>
     `);
+    carrito.push(producto);
     }
     carritoRenderCantidad();
     cargarTotal();   
@@ -199,14 +192,37 @@ window.addEventListener('load', function() {
     const item = button.closest('tr');
     const nombreProd = item.querySelector('.nombre').textContent;
     const producto = productos_Array.find(objProd => objProd.Nombre === nombreProd);
+    for(let i=0; i<carrito.length ; i++){
+
+      if(carrito[i].Nombre.trim() === nombreProd.trim()){
+        carrito.splice(i, 1)
+      }
+    }
     item.remove();
     localStorage.removeItem('carrito', producto);
     contador = contador - 1;
     carritoRenderCantidad();
+    cargarTotal();
   });
   $('#carritotbody').on('change','#inputCantidad', function(e) {
     cargarTotal ();
   });
 });
 
+//funciones
+ 
 
+function carritoRenderCantidad (){
+  const cantidadelementos = document.querySelector('.carritoCantidad')
+  cantidadelementos.innerHTML = `${contador}`
+}
+function cargarTotal (){
+  let Total = 0;
+  const itemCartTotal = document.querySelector('#Total')
+  carrito.forEach((item) => {
+    const precio = Number(item.Precio.replace("$", ''))
+    Total = Total + precio*item.Cantidad
+  })
+
+ itemCartTotal.innerHTML = `$${Total}`
+}
