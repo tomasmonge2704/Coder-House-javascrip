@@ -126,7 +126,7 @@ $('body').on('click', '.botonBorrar', function(e) {
 });
 
 //carrito
-
+const tbody = document.querySelector('#carritotbody')
 const carrito = [];
 var contador = 0;
 let totalFinal = 0;
@@ -137,6 +137,16 @@ $('body').on('click', '#botonCarrito', function(e) {
   const item = button.closest('.col');
   const nombreProd = item.querySelector('.fw-bolder').textContent;
   const producto = productos_Array.find(objProd => objProd.Nombre === nombreProd);
+  const InputElemnto = tbody.getElementsByClassName('input__elemento');
+  for(let i =0; i < carrito.length ; i++){
+    if(carrito[i].Nombre.trim() === producto.Nombre.trim()){
+      carrito[i].Cantidad ++;
+      const inputValue = InputElemnto[i]
+      inputValue.value++;
+      cargarTotal()
+      return null;
+    }
+  }
     $("#carritotbody").append( `<tr>
     <th scope="row"> ${contador} </th>
     <td><img class="imgCarrito" src="${producto.img}" alt="..." /></td>
@@ -161,7 +171,7 @@ function cargar_carrito() {
     <td><img class="imgCarrito" src="${producto.img}" alt="..." /></td>
     <td class="nombre">${producto.Nombre}</td>
     <td>$${producto.Precio}</td>
-    <td> <input type="number" id="inputCantidad" min="1" value=${producto.Cantidad} class="w44"> <button class="delete btn btn-danger botonBorrarCarrito">x</button></td>
+    <td> <input type="number" min="1" value=${producto.Cantidad} class="w44 input__elemento"> <button class="delete btn btn-danger botonBorrarCarrito">x</button></td>
     </tr>
     `);
     carrito.push(producto);
