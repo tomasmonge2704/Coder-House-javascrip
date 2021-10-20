@@ -129,7 +129,6 @@ $('body').on('click', '.botonBorrar', function(e) {
 const tbody = document.querySelector('#carritotbody')
 const carrito = [];
 var contador = 0;
-let totalFinal = 0;
 /*agrega al carrito */
 $('body').on('click', '#botonCarrito', function(e) {
   contador = contador + 1;
@@ -159,6 +158,17 @@ $('body').on('click', '#botonCarrito', function(e) {
    carritoRenderCantidad();
    localStorage.setItem("carrito", JSON.stringify(carrito));
    cargarTotal();
+ 
+  $('.input__elemento').change(function(e) {
+    const sumaInput  = e.target
+    carrito.forEach(item => {
+           if(item.Nombre.trim() === producto.Nombre){
+            sumaInput.value < 1 ?  (sumaInput.value = 1) : sumaInput.value;
+             item.Cantidad = sumaInput.value;
+             cargarTotal()
+           }
+         })
+    });
 });
  /*carga carrito del local storage */
 function cargar_carrito() {
@@ -178,9 +188,11 @@ function cargar_carrito() {
     }
     carritoRenderCantidad();
     cargarTotal();   
+    
   }
   else{
   }
+  
   }
 cargar_carrito();
 
@@ -210,7 +222,6 @@ window.addEventListener('load', function() {
 
 //funciones
  
-
 function carritoRenderCantidad (){
   const cantidadelementos = document.querySelector('.carritoCantidad')
   cantidadelementos.innerHTML = `${contador}`
