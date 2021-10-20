@@ -42,6 +42,7 @@ $("body").on("click", "#botonCarrito", function (e) {
         sumaInput.value < 1 ? (sumaInput.value = 1) : sumaInput.value;
         item.Cantidad = sumaInput.value;
         cargarTotal();
+        localStorage.setItem("carrito", JSON.stringify(carrito));
       }
     });
   });
@@ -61,11 +62,23 @@ function cargar_carrito() {
     </tr>
     `);
       carrito.push(producto);
+      $(".input__elemento").change(function (e) {
+        const sumaInput = e.target;
+        carrito.forEach((item) => {
+          if (item.Nombre.trim() === producto.Nombre) {
+            sumaInput.value < 1 ? (sumaInput.value = 1) : sumaInput.value;
+            item.Cantidad = sumaInput.value;
+            cargarTotal();
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+          }
+        });
+      });
+      
     }
     carritoRenderCantidad();
     cargarTotal();
-  } else {
-  }
+    
+  } 
 }
 cargar_carrito();
 
@@ -81,15 +94,12 @@ window.addEventListener("load", function () {
     for (let i = 0; i < carrito.length; i++) {
       if (carrito[i].Nombre.trim() === nombreProd.trim()) {
         carrito.splice(i, 1);
+        localStorage.setItem("carrito", JSON.stringify(carrito));
       }
     }
     item.remove();
-    localStorage.removeItem("carrito", producto);
     contador = contador - 1;
     carritoRenderCantidad();
-    cargarTotal();
-  });
-  $("#carritotbody").on("change", "#inputCantidad", function (e) {
     cargarTotal();
   });
 });
