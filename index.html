@@ -1,123 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Tienda JS</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-        
-    </head>
-    <body>
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">Tienda JS</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"> <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Agregar nuevo producto
-                            </button>
-                        
-                        </li>
-                        
-                    </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#modalCarrito">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill carritoCantidad" >0</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-        
-        <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div id="product-list"class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                     
-                     
-                </div>
-            </div>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Tienda JS</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="#!">Tienda JS</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li class="nav-item">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Agregar nuevo producto
+              </button>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <button
+              class="btn btn-outline-dark"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#modalCarrito"
+            >
+              <i class="bi-cart-fill me-1"></i>
+              Cart
+              <span
+                class="
+                  badge
+                  bg-dark
+                  text-white
+                  ms-1
+                  rounded-pill
+                  carritoCantidad
+                "
+                >0</span
+              >
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
 
-        </section>
-         <!-- Modal -->
-         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo producto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                 <!-- Product image-->
-                <input class="form-control  form-control-sm" id="myfile" type="file">
-               
-                
-
-                <!-- Product actions-->
-                <div id="nuevoDiv"class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <input class="form-control" type="text" id="nomb" placeholder="Nombre del profucto" aria-label="default input example">
-                    <input class="form-control" type="text" id="pre" placeholder="Precio" aria-label="default input example">
-                    <input class="form-control" type="text" id="cant" placeholder="Cantidad" aria-label="default input example">
-                    
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" id="botonSubir">Agregar nuevo producto</a></div>
-                </div>
-                    </div>
-                    </div>
-                </div>
-                
-       <!-- Modal carrito-->
-       <div class="modal fade" id="modalCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <!-- Section-->
+    <section class="py-5">
+      <div class="container px-4 px-lg-5 mt-5">
+        <div
+          id="product-list"
+          class="
+            row
+            gx-4 gx-lg-5
+            row-cols-2 row-cols-md-3 row-cols-xl-4
+            justify-content-center
+          "
+        ></div>
+      </div>
+    </section>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Carrito</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <table class="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col"></th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Cantidad</th>
-                    
-                  </tr>
-                </thead>
-                <tbody id="carritotbody">
-                  
-                 
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th scope="row"><Table>Total: </Table></th>
-                        <td colspan="2" id="Total">0</td>
-                        <td><div class="text-center" ><a class="btn btn-outline-dark mt-auto" id="boton-comprar" href="#">Comprar</a></div></td>
-                      </tr>
-                </tfoot>
-              </table>
-        </div>
-        </div>
-        </div>
-        
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script  type="module" src="js/index.js"></script>
-        
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Agregar nuevo producto
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- Product image-->
+          <input class="form-control form-control-sm" id="myfile" type="file" />
 
-    </body>
-    
+          <!-- Product actions-->
+          <div
+            id="nuevoDiv"
+            class="card-footer p-4 pt-0 border-top-0 bg-transparent"
+          >
+            <input
+              class="form-control"
+              type="text"
+              id="nomb"
+              placeholder="Nombre del profucto"
+              aria-label="default input example"
+            />
+            <input
+              class="form-control"
+              type="text"
+              id="pre"
+              placeholder="Precio"
+              aria-label="default input example"
+            />
+            <input
+              class="form-control"
+              type="text"
+              id="cant"
+              placeholder="Cantidad"
+              aria-label="default input example"
+            />
+
+            <div class="text-center">
+              <a class="btn btn-outline-dark mt-auto" id="botonSubir"
+                >Agregar nuevo producto</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal carrito-->
+    <div
+      class="modal fade"
+      id="modalCarrito"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Carrito</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col"></th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+              </tr>
+            </thead>
+            <tbody id="carritotbody"></tbody>
+            <tfoot>
+              <tr>
+                <th scope="row">
+                  <table>
+                    Total:
+                  </table>
+                </th>
+                <td colspan="2" id="Total">0</td>
+                <td>
+                  <div class="text-center">
+                    <a
+                      class="btn btn-outline-dark mt-auto"
+                      id="boton-comprar"
+                      href="#"
+                      >Comprar</a
+                    >
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="module" src="js/index.js"></script>
+    <script type="module" src="js/carrito.js"></script>
+  </body>
 </html>
